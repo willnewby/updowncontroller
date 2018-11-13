@@ -20,7 +20,11 @@ log.setLevel(logging.INFO)
 def sync():
     """Sync existing and add new checks."""
     observed = request.json["parent"]
-    url = observed.get("spec", {}).get("url", False)
+    prefix = observed.get("spec", {}).get("prefix", 'http')
+    suffix = observed.get("spec", {}).get("suffix", '')
+    name = observed.get("metadata", {}).get("name", False)
+    url = "{}://{}/{}".format(prefix, name, suffix)
+
     log.info("Checking url {}".format(url))
     exists, check = check_exists(url)
 
@@ -42,11 +46,16 @@ def sync():
 def finalize():
     """Delete checks in UpDown as objects are deleted in Kubernetes."""
     observed = request.json["parent"]
-    url = observed.get("spec", {}).get("url", False)
+    prefix = observed.get("spec", {}).get("prefix", 'http')
+    suffix = observed.get("spec", {}).get("suffix", '')
+    name = observed.get("metadata", {}).get("name", False)
+    url = "{}://{}/{}".format(prefix, name, suffix)
 
     exists, check = check_exists(url)
     if exists:
         deleted = check.delete()
+    else:
+        deleted = 'DNE'
     log.info("Delete call result {}".format(deleted))
     return jsonify({'finalized': True})
 

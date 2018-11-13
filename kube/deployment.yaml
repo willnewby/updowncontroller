@@ -6,7 +6,7 @@ kind: Deployment
 metadata:
   name: updowncontroller
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
       containers:
       - name: updowncontroller
         command:  [ 'python', 'app.py' ]
-        image: 275271710846.dkr.ecr.us-west-2.amazonaws.com/updowncontroller:2018-11-09_14-10-24
+        image: 275271710846.dkr.ecr.us-west-2.amazonaws.com/updowncontroller:2018-11-13_14-38-18
         ports:
         - containerPort: 5000
         env:
