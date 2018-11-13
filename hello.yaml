@@ -1,0 +1,7 @@
+apiVersion: zentainer.io/v1
+kind: UpDownCheck
+metadata:
+  name: hello-nclug
+spec:
+  url: https://google.ca/
+  period: 300
