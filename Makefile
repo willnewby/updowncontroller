@@ -5,10 +5,10 @@ default: build push
 all: build push deploy logs
 
 build:
-	docker build . -t 275271710846.dkr.ecr.us-west-2.amazonaws.com/updowncontroller:$(DATETIME)
+	docker build . -t willnewby/updowncontroller:$(DATETIME)
 
 push:
-	`AWS_PROFILE='zentainer' aws ecr get-login --no-include-email` && docker push 275271710846.dkr.ecr.us-west-2.amazonaws.com/updowncontroller:$(DATETIME)
+	docker push willnewby/updowncontroller:$(DATETIME)
 
 deploy:
 	kubectl apply -f kube/

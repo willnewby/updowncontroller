@@ -15,7 +15,7 @@ spec:
       containers:
       - name: updowncontroller
         command:  [ 'python', 'app.py' ]
-        image: 275271710846.dkr.ecr.us-west-2.amazonaws.com/updowncontroller:2018-11-13_14-38-18
+        image: willnewby/updowncontroller:2018-11-13_17-36-45
         ports:
         - containerPort: 5000
         env:

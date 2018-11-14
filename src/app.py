@@ -39,7 +39,7 @@ def sync():
     check.published = observed.get("spec", {}).get("published", False)
     log.info("Syncing back to updown.io")
 
-    return jsonify({})
+    return jsonify({"status": "created"})
 
 
 @app.route('/finalize', methods=['POST'])
